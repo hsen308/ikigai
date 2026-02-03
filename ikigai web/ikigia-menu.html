@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ikigia - Vintage Lebanese Coffee Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Crimson+Text:wght@400;600;700&family=Courgette&family=Satisfy&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-cream: #f9f6f0;
+            --color-warm-brown: #8b6f47;
+            --color-deep-red: #a0403d;
+            --color-vintage-green: #5a6b4f;
+            --color-gold: #c9a961;
+            --color-dark: #3d2f24;
+            --color-light-text: #6b5d52;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--color-cream);
+            color: var(--color-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Vintage paper texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, transparent 0%, rgba(139, 111, 71, 0.03) 100%),
+                radial-gradient(circle at 80% 80%, transparent 0%, rgba(160, 64, 61, 0.02) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .ornamental-border {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 20px solid transparent;
+            border-image: repeating-linear-gradient(
+                45deg,
+                var(--color-warm-brown),
+                var(--color-warm-brown) 10px,
+                var(--color-gold) 10px,
+                var(--color-gold) 20px
+            ) 20;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.3;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header with vintage frame */
+        header {
+            text-align: center;
+            padding: 50px 30px;
+            margin-bottom: 40px;
+            background: white;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            border: 3px double var(--color-warm-brown);
+            position: relative;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        header::before,
+        header::after {
+            content: '❦';
+            position: absolute;
+            font-size: 2rem;
+            color: var(--color-deep-red);
+            opacity: 0.4;
+        }
+
+        header::before {
+            top: 15px;
+            left: 20px;
+        }
+
+        header::after {
+            bottom: 15px;
+            right: 20px;
+            transform: rotate(180deg);
+        }
+
+        .logo {
+            font-family: 'Satisfy', cursive;
+            font-size: 4.5rem;
+            color: var(--color-deep-red);
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-family: 'Amatic SC', cursive;
+            font-size: 1.8rem;
+            color: var(--color-warm-brown);
+            letter-spacing: 3px;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+
+        .heritage-note {
+            font-family: 'Crimson Text', serif;
+            font-size: 1rem;
+            color: var(--color-light-text);
+            font-style: italic;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(139, 111, 71, 0.3);
+        }
+
+        /* Menu sections with vintage cards */
+        .menu-section {
+            background: white;
+            padding: 40px 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+            border: 2px solid var(--color-warm-brown);
+            border-radius: 2px;
+            position: relative;
+            animation: slideIn 0.8s ease-out backwards;
+        }
+
+        .menu-section:nth-child(1) { animation-delay: 0.2s; }
+        .menu-section:nth-child(2) { animation-delay: 0.3s; }
+        .menu-section:nth-child(3) { animation-delay: 0.4s; }
+        .menu-section:nth-child(4) { animation-delay: 0.5s; }
+        .menu-section:nth-child(5) { animation-delay: 0.6s; }
+        .menu-section:nth-child(6) { animation-delay: 0.7s; }
+
+        /* Decorative corners */
+        .menu-section::before {
+            content: '✤';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.5rem;
+            color: var(--color-vintage-green);
+            opacity: 0.3;
+        }
+
+        .menu-section::after {
+            content: '✤';
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--color-vintage-green);
+            opacity: 0.3;
+        }
+
+        .section-title {
+            font-family: 'Courgette', cursive;
+            font-size: 2.5rem;
+            color: var(--color-deep-red);
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+        }
+
+        .menu-items {
+            display: grid;
+            gap: 18px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 10px 5px;
+            border-bottom: 1px dotted rgba(139, 111, 71, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item:hover {
+            background: rgba(201, 169, 97, 0.08);
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        .item-name {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            color: var(--color-dark);
+            font-weight: 600;
+            flex: 1;
+            position: relative;
+        }
+
+        .price-line {
+            flex-grow: 1;
+            border-bottom: 1px dotted var(--color-light-text);
+            margin: 0 12px;
+            opacity: 0.4;
+            min-width: 30px;
+        }
+
+        .item-price {
+            font-family: 'Amatic SC', cursive;
+            font-size: 1.6rem;
+            color: var(--color-deep-red);
+            font-weight: 700;
+            white-space: nowrap;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        /* Special note styling */
+        .note {
+            font-family: 'Crimson Text', serif;
+            font-size: 0.95rem;
+            color: var(--color-light-text);
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(139, 111, 71, 0.2);
+            font-style: italic;
+        }
+
+        /* Footer with cultural touch */
+        footer {
+            text-align: center;
+            padding: 50px 20px 30px;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .cultural-quote {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.4rem;
+            color: var(--color-warm-brown);
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .quote-attribution {
+            font-family: 'Amatic SC', cursive;
+            font-size: 1.3rem;
+            color: var(--color-deep-red);
+            margin-bottom: 30px;
+        }
+
+        .decorative-separator {
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+            margin: 30px auto;
+        }
+
+        .contact-info {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            color: var(--color-light-text);
+            line-height: 1.8;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3rem;
+            }
+
+            .subtitle {
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .menu-section {
+                padding: 30px 20px;
+            }
+
+            .item-name {
+                font-size: 1.1rem;
+            }
+
+            .item-price {
+                font-size: 1.4rem;
+                min-width: 70px;
+            }
+
+            header {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Vintage coffee stain effect */
+        .coffee-stain {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 111, 71, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        .stain-1 {
+            top: 20%;
+            right: 5%;
+            width: 60px;
+            height: 60px;
+        }
+
+        .stain-2 {
+            bottom: 30%;
+            left: 8%;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ornamental-border"></div>
+    <div class="coffee-stain stain-1"></div>
+    <div class="coffee-stain stain-2"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="logo">Ikigia</h1>
+            <p class="subtitle">Vintage Lebanese Coffee Shop</p>
+            <p class="heritage-note">Where memories brew alongside tradition</p>
+        </header>
+
+        <main>
+            <!-- Coffee/Tea/Hot Section -->
+            <section class="menu-section">
+                <h2 class="section-title">Coffee/Tea/Hot</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Espresso</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Nescafe</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">350 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Caramel</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">350 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Salted Caramel</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">350 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Toffee nut</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">350 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ginger bread</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">350 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Hazelnut</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">350 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mocha</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">350 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Cinnamon</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">350 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Pumpkin spice</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">350 L.L</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coffee Section -->
+            <section class="menu-section">
+                <h2 class="section-title">Coffee</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Espresso</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">100 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Americano</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">250 L.L</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hot Drinks Section -->
+            <section class="menu-section">
+                <h2 class="section-title">Hot Drinks</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Tea</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">150 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Herbs</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">150 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Belgian chocolate</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Hot chocolate</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">250 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Hot Sahlab with Kask</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">350 L.L</span>
+                    </div>
+                </div>
+                <p class="note">+ 5$ for Cream/marshmallow</p>
+            </section>
+
+            <!-- Milkshake Section -->
+            <section class="menu-section">
+                <h2 class="section-title">Milkshake</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Royal shake</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">900 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Oreo shake</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Crunchy shake</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Lotus shake</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Crème Brûlée</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">600 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Caramel Shake</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">450 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Double chocolate</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Banana Shake</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">350 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Strawberry & Cream</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Matcha Section -->
+            <section class="menu-section">
+                <h2 class="section-title">Matcha</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Hot Matcha</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Iced Matcha</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Matcha Milkshake</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Matcha Strawberry</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">500 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Rose Matcha</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Frappe and Iced Tea Section -->
+            <section class="menu-section">
+                <h2 class="section-title">Frappe</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Chocolate</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Vanilla</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Caramel</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Salted Caramel</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Crème mocha</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Toffee nut</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Lotus Mocha</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">500 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Lotus Latte</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Caramel Mocha</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Iced Tea Section -->
+            <section class="menu-section">
+                <h2 class="section-title">Iced Tea</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Iced tea Peach</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">300 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Iced tea Passion</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">300 L.L</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Smoothie Section -->
+            <section class="menu-section">
+                <h2 class="section-title">Smoothie</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Mango</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Strawberry</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Tropical Fruits</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mixed berries</span>
+                        <span class="price-line"></span>
+                        <span class="item-price">400 L.L</span>
+                    </div>
+                </div>
+                <p class="note">+ 5$for Cream/extra flavor/Coffee</p>
+            </section>
+        </main>
+
+        <footer>
+            <div class="decorative-separator"></div>
+            <p class="cultural-quote">
+                "A cup of coffee shared with a friend is happiness tasted and time well spent"
+            </p>
+            <p class="quote-attribution">~ Lebanese Proverb</p>
+            <div class="decorative-separator"></div>
+            <div class="contact-info">
+                <p>In the spirit of Fairuz and Umm Kulthum</p>
+                <p>Where tradition meets warmth</p>
+                <p style="margin-top: 20px; font-size: 0.95rem; color: var(--color-warm-brown);">
+                    يا قهوة الصبح يا رفيقي<br>
+                    (O morning coffee, O my companion)
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Add subtle parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const stains = document.querySelectorAll('.coffee-stain');
+            stains.forEach((stain, index) => {
+                const speed = (index + 1) * 0.05;
+                stain.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add hover effect sound (optional - visual feedback)
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(3px)';
+            });
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+    </script>
+</body>
+</html>

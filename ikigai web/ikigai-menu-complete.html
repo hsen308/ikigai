@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ikigai - Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-burgundy: #5c1a1a;
+            --color-gold: #c9a961;
+            --color-cream: #f5ebe0;
+            --color-dark: #2d1810;
+            --color-light-brown: #8b6f47;
+            --color-white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--color-cream);
+            color: var(--color-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav-wrapper {
+            position: sticky;
+            top: 0;
+            background: var(--color-burgundy);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            padding: 15px 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            font-family: 'Montserrat', sans-serif;
+            padding: 12px 25px;
+            background: transparent;
+            border: 2px solid var(--color-gold);
+            color: var(--color-white);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: var(--color-gold);
+            color: var(--color-burgundy);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 169, 97, 0.4);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Page sections */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header with logo */
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: var(--color-burgundy);
+            margin: -40px -20px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(201, 169, 97, 0.1), transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(201, 169, 97, 0.1), transparent 40%);
+            pointer-events: none;
+        }
+
+        .logo-circle {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            background: var(--color-burgundy);
+            border: 5px solid var(--color-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            color: var(--color-white);
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .header-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            color: var(--color-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Category sections */
+        .category-section {
+            margin-bottom: 60px;
+            background: var(--color-white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--color-gold);
+        }
+
+        .category-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            color: var(--color-burgundy);
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .category-title::after {
+            content: '◆';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--color-gold);
+            font-size: 1.5rem;
+        }
+
+        /* Menu grid with photos */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .menu-card {
+            background: var(--color-cream);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: var(--color-gold);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--color-light-brown), var(--color-burgundy));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-cream);
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image::after {
+            content: 'Photo';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8rem;
+            font-family: 'Montserrat', sans-serif;
+            opacity: 0.5;
+            letter-spacing: 1px;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .card-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: var(--color-burgundy);
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .card-price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            color: var(--color-gold);
+            font-weight: 600;
+            margin-left: 15px;
+            white-space: nowrap;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            color: var(--color-dark);
+            line-height: 1.6;
+            opacity: 0.85;
+        }
+
+        /* Simple list style (for items without photos) */
+        .menu-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .menu-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--color-cream);
+            border-radius: 6px;
+            border-left: 3px solid var(--color-gold);
+            transition: all 0.3s ease;
+        }
+
+        .menu-list-item:hover {
+            background: var(--color-white);
+            transform: translateX(5px);
+        }
+
+        .list-item-name {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            color: var(--color-dark);
+            font-weight: 600;
+        }
+
+        .list-item-price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: var(--color-burgundy);
+            font-weight: 600;
+        }
+
+        /* Notes */
+        .note {
+            text-align: center;
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(201, 169, 97, 0.1);
+            border-radius: 6px;
+            font-style: italic;
+            color: var(--color-dark);
+            border: 1px dashed var(--color-gold);
+        }
+
+        /* Crepe menu specific */
+        .crepe-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .option-box {
+            background: var(--color-white);
+            padding: 25px;
+            border-radius: 8px;
+            border: 2px solid var(--color-gold);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .option-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            color: var(--color-burgundy);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .option-list {
+            list-style: none;
+        }
+
+        .option-list li {
+            padding: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dotted rgba(92, 26, 26, 0.2);
+            font-size: 1.1rem;
+        }
+
+        .option-list li:last-child {
+            border-bottom: none;
+        }
+
+        .option-name {
+            color: var(--color-dark);
+        }
+
+        .option-price {
+            color: var(--color-burgundy);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 2px solid var(--color-gold);
+            color: var(--color-dark);
+        }
+
+        .footer-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--color-burgundy);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .footer-info {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: var(--color-light-brown);
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-circle {
+                width: 150px;
+                height: 150px;
+            }
+
+            .logo-text {
+                font-size: 2.5rem;
+            }
+
+            .category-title {
+                font-size: 2.2rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-btn {
+                padding: 10px 18px;
+                font-size: 0.8rem;
+            }
+
+            .category-section {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-wrapper">
+        <nav>
+            <button class="nav-btn active" onclick="showPage('home')">Home</button>
+            <button class="nav-btn" onclick="showPage('hot-drinks')">Hot Drinks</button>
+            <button class="nav-btn" onclick="showPage('cold-drinks')">Cold Drinks</button>
+            <button class="nav-btn" onclick="showPage('crepes')">Crêpes</button>
+        </nav>
+    </div>
+
+    <div class="container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="header">
+                <div class="logo-circle">
+                    <span class="logo-text">Ikigai</span>
+                </div>
+                <p class="header-subtitle">Vintage Lebanese Coffee Shop</p>
+            </div>
+
+            <div class="category-section">
+                <h2 class="category-title">Welcome to Ikigai</h2>
+                <p style="text-align: center; font-size: 1.2rem; line-height: 1.8; color: var(--color-dark); max-width: 700px; margin: 0 auto;">
+                    Step into a world where tradition meets warmth. At Ikigai, every cup is crafted with passion, 
+                    every crêpe is made with love, and every moment is infused with the nostalgic spirit of Lebanon. 
+                    In the company of Fairuz and Umm Kulthum, find your reason for being.
+                </p>
+            </div>
+        </div>
+
+        <!-- Hot Drinks Page -->
+        <div id="hot-drinks" class="page">
+            <!-- Coffee/Tea/Hot -->
+            <div class="category-section">
+                <h2 class="category-title">Coffee/Tea/Hot</h2>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="card-image">☕</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Espresso</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Rich and bold espresso shot</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">☕</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Nescafe</h3>
+                                <span class="card-price">350 L.L</span>
+                            </div>
+                            <p class="card-description">Classic instant coffee</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">☕</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Caramel</h3>
+                                <span class="card-price">350 L.L</span>
+                            </div>
+                            <p class="card-description">Sweet caramel flavored coffee</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">☕</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Salted Caramel</h3>
+                                <span class="card-price">350 L.L</span>
+                            </div>
+                            <p class="card-description">Perfect sweet and salty balance</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">☕</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Toffee Nut</h3>
+                                <span class="card-price">350 L.L</span>
+                            </div>
+                            <p class="card-description">Buttery toffee with a hint of nuts</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">☕</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Ginger Bread</h3>
+                                <span class="card-price">350 L.L</span>
+                            </div>
+                            <p class="card-description">Warm spiced gingerbread flavor</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">☕</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Hazelnut</h3>
+                                <span class="card-price">350 L.L</span>
+                            </div>
+                            <p class="card-description">Smooth hazelnut essence</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">☕</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Mocha</h3>
+                                <span class="card-price">350 L.L</span>
+                            </div>
+                            <p class="card-description">Coffee meets chocolate perfection</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">☕</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Cinnamon</h3>
+                                <span class="card-price">350 L.L</span>
+                            </div>
+                            <p class="card-description">Aromatic cinnamon spice</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">☕</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Pumpkin Spice</h3>
+                                <span class="card-price">350 L.L</span>
+                            </div>
+                            <p class="card-description">Seasonal spiced delight</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coffee -->
+            <div class="category-section">
+                <h2 class="category-title">Coffee</h2>
+                <div class="menu-list">
+                    <div class="menu-list-item">
+                        <span class="list-item-name">Espresso</span>
+                        <span class="list-item-price">100 L.L</span>
+                    </div>
+                    <div class="menu-list-item">
+                        <span class="list-item-name">Americano</span>
+                        <span class="list-item-price">250 L.L</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hot Drinks -->
+            <div class="category-section">
+                <h2 class="category-title">Hot Drinks</h2>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="card-image">🍵</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Tea</h3>
+                                <span class="card-price">150 L.L</span>
+                            </div>
+                            <p class="card-description">Classic Lebanese tea</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🌿</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Herbs</h3>
+                                <span class="card-price">150 L.L</span>
+                            </div>
+                            <p class="card-description">Herbal infusion selection</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🍫</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Belgian Chocolate</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Premium hot chocolate</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🍫</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Hot Chocolate</h3>
+                                <span class="card-price">250 L.L</span>
+                            </div>
+                            <p class="card-description">Classic hot chocolate</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🥛</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Hot Sahlab with Kask</h3>
+                                <span class="card-price">350 L.L</span>
+                            </div>
+                            <p class="card-description">Traditional Middle Eastern warm drink</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="note">+ 5$ for Cream/marshmallow</p>
+            </div>
+        </div>
+
+        <!-- Cold Drinks Page -->
+        <div id="cold-drinks" class="page">
+            <!-- Milkshake -->
+            <div class="category-section">
+                <h2 class="category-title">Milkshake</h2>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="card-image">🥤</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Royal Shake</h3>
+                                <span class="card-price">900 L.L</span>
+                            </div>
+                            <p class="card-description">Our signature premium shake</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🥤</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Oreo Shake</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Cookies and cream perfection</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🥤</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Crunchy Shake</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Loaded with crunchy bits</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🥤</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Lotus Shake</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Caramelized biscuit bliss</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🥤</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Crème Brûlée</h3>
+                                <span class="card-price">600 L.L</span>
+                            </div>
+                            <p class="card-description">Dessert in a glass</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🥤</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Caramel Shake</h3>
+                                <span class="card-price">450 L.L</span>
+                            </div>
+                            <p class="card-description">Sweet caramel indulgence</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🥤</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Double Chocolate</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">For serious chocolate lovers</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🥤</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Banana Shake</h3>
+                                <span class="card-price">350 L.L</span>
+                            </div>
+                            <p class="card-description">Creamy banana goodness</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🥤</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Strawberry & Cream</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Fresh strawberry delight</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Matcha -->
+            <div class="category-section">
+                <h2 class="category-title">Matcha</h2>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="card-image">🍵</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Hot Matcha</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Traditional Japanese green tea</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🍵</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Iced Matcha</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Refreshing chilled matcha</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🍵</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Matcha Milkshake</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Creamy matcha blend</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🍵</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Matcha Strawberry</h3>
+                                <span class="card-price">500 L.L</span>
+                            </div>
+                            <p class="card-description">Fruity matcha fusion</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🍵</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Rose Matcha</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Floral matcha experience</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frappe -->
+            <div class="category-section">
+                <h2 class="category-title">Frappé</h2>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="card-image">🧊</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Chocolate</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🧊</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Vanilla</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🧊</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Caramel</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🧊</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Salted Caramel</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🧊</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Crème Mocha</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🧊</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Toffee Nut</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🧊</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Lotus Mocha</h3>
+                                <span class="card-price">500 L.L</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🧊</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Lotus Latte</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🧊</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Caramel Mocha</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Iced Tea -->
+            <div class="category-section">
+                <h2 class="category-title">Iced Tea</h2>
+                <div class="menu-list">
+                    <div class="menu-list-item">
+                        <span class="list-item-name">Iced Tea Peach</span>
+                        <span class="list-item-price">300 L.L</span>
+                    </div>
+                    <div class="menu-list-item">
+                        <span class="list-item-name">Iced Tea Passion</span>
+                        <span class="list-item-price">300 L.L</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smoothie -->
+            <div class="category-section">
+                <h2 class="category-title">Smoothie</h2>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="card-image">🥭</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Mango</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Fresh tropical mango</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🍓</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Strawberry</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Sweet berry delight</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🍍</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Tropical Fruits</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Exotic fruit blend</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🫐</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Mixed Berries</h3>
+                                <span class="card-price">400 L.L</span>
+                            </div>
+                            <p class="card-description">Berry medley</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="note">+ 5$ for Cream/extra flavor/Coffee</p>
+            </div>
+        </div>
+
+        <!-- Crepes Page -->
+        <div id="crepes" class="page">
+            <div class="category-section">
+                <h2 class="category-title">Crêpe Menu</h2>
+                
+                <!-- Signature Crepes -->
+                <div class="menu-grid" style="margin-bottom: 40px;">
+                    <div class="menu-card">
+                        <div class="card-image">🥞</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Super Classic</h3>
+                                <span class="card-price">7.5$</span>
+                            </div>
+                            <p class="card-description">A crispy batter spread with melted Belgian chocolate, brown sugar and walnuts with a pinch of cinnamon.</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🥞</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Ikigai Crêpe</h3>
+                                <span class="card-price">7.5$</span>
+                            </div>
+                            <p class="card-description">A creamy cêpe filled with vanilla ice cream, lotus digestive biscuit and topped with belgian chocolate.</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🥞</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Choco Lover</h3>
+                                <span class="card-price">7.5$</span>
+                            </div>
+                            <p class="card-description">A soft crêpe filled with kinder pieces, brownie custard, fresh strawberries and topped with belgian chocolate.</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="card-image">🥞</div>
+                        <div class="card-content">
+                            <div class="card-header">
+                                <h3 class="card-name">Crispy Dubai</h3>
+                                <span class="card-price">7.5$</span>
+                            </div>
+                            <p class="card-description">A crispy crêpe filled with chocolate, pistachio cream and topped with a crispy kadaifi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Build Your Own -->
+                <div class="crepe-options">
+                    <div class="option-box">
+                        <h3 class="option-title">Traditional Base</h3>
+                        <ul class="option-list">
+                            <li><span class="option-name">Nutella</span><span class="option-price">4.5$</span></li>
+                            <li><span class="option-name">Lotus</span><span class="option-price">4.5$</span></li>
+                            <li><span class="option-name">Bueno</span><span class="option-price">4.5$</span></li>
+                            <li><span class="option-name">Pistachio</span><span class="option-price">5$</span></li>
+                            <li><span class="option-name">Peanuts</span><span class="option-price">4$</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="option-box">
+                        <h3 class="option-title">Top Your Base</h3>
+                        <ul class="option-list">
+                            <li><span class="option-name">Strawberry</span><span class="option-price">2$</span></li>
+                            <li><span class="option-name">Banana</span><span class="option-price">1$</span></li>
+                            <li><span class="option-name">Kinder</span><span class="option-price">1$</span></li>
+                            <li><span class="option-name">Crushed oreo</span><span class="option-price">1$</span></li>
+                            <li><span class="option-name">Crushed lotus</span><span class="option-price">1$</span></li>
+                            <li><span class="option-name">Digestive</span><span class="option-price">1$</span></li>
+                            <li><span class="option-name">Ice cream</span><span class="option-price">1$</span></li>
+                            <li><span class="option-name">Brownies</span><span class="option-price">1.5$</span></li>
+                            <li><span class="option-name">White chocolate</span><span class="option-price">1.5$</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p class="footer-tagline">"Find your reason for being, one cup at a time"</p>
+            <div class="footer-info">
+                <p>In the spirit of Fairuz and Umm Kulthum</p>
+                <p>Where tradition meets warmth</p>
+                <p style="margin-top: 15px; font-size: 0.9rem;">📍 Lebanon | ☎️ Contact Us</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add smooth hover effects
+        document.querySelectorAll('.menu-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
